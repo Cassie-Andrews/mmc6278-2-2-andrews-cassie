@@ -13,3 +13,4 @@ test |TEST
 test |TEST
 test |TEST
 quote |author
+magenta |test

@@ -51,11 +51,11 @@ program
       await fs.appendFile(QUOTE_FILE, newQuote)
 	    const fileContents = await fs.readFile(QUOTE_FILE, 'utf-8')
       // After the quote/author is saved, alert the user that the quote was added.
-      console.log("A new quote was added!")
+      // You may style the text with chalk as you wish
+      console.log(chalk.bold.magenta("A new quote was added!"))
     } catch(err) {
       console.log(err)
     }
-    // You may style the text with chalk as you wish
     // HINT: You can store both author and quote on the same line using
     // a separator like pipe | and then using .split() when retrieving
   });
