@@ -31,6 +31,7 @@ program
       // console log the quote and author
       console.log(chalk.inverse.italic(randomQuote));
     // ** You may style the text with chalk as you wish
+    // ** change |author formatting
   });
 
 program
