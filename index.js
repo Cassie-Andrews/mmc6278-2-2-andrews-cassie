@@ -37,23 +37,24 @@ program
 program
   .command("addQuote <quote> [author]")
   .description("adds a quote to the quote file")
-  .action(async () => {
+  .action(async (quote, author) => {
+    try {
     // TODO: Add the quote and author to the quotes.txt file
       // get quote and author from user input: <quote> [author]
-      const newQuote = ('<quote>' + " |" + '[author]' + "\n")
+      // match quote formatting 
+      let newQuote = (quote + " |" + author + "\n")
 
-      console.log(newQuote)
+      // ** If no author is provided ---> if author = "" ?
+      // ** save the author as "Anonymous".
 
-      fs.appendFile(QUOTE_FILE, newQuote)
-	      .then(function() {
-          
-          return fs.readFile(QUOTE_FILE, 'utf-8')
-	    })
-      // appendFile
-    // If no author is provided,
-    // save the author as "Anonymous".
-    // After the quote/author is saved,
-    // alert the user that the quote was added.
+      // add to qoutes.txt with appendFile
+      await fs.appendFile(QUOTE_FILE, newQuote)
+	    const fileContents = await fs.readFile(QUOTE_FILE, 'utf-8')
+      // After the quote/author is saved, alert the user that the quote was added.
+      console.log("A new quote was added!")
+    } catch(err) {
+      console.log(err)
+    }
     // You may style the text with chalk as you wish
     // HINT: You can store both author and quote on the same line using
     // a separator like pipe | and then using .split() when retrieving
