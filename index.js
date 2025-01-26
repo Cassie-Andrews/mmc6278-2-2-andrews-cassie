@@ -17,6 +17,7 @@ program
   .action(async () => {
     // ** add try statement from lecture 2.05
     // TODO: Pull a random quote from the quotes.txt file
+    try {
       //read file with fs module
       const data = await fs.readFile(QUOTE_FILE, 'utf-8');
       // console.log(data);
@@ -29,9 +30,11 @@ program
       // select quote using randomIndex from filteredLines
       const randomQuote = filteredLines[randomIndex];
       // console log the quote and author
+      // You may style the text with chalk as you wish
       console.log(chalk.inverse.italic(randomQuote));
-    // ** You may style the text with chalk as you wish
-    // ** change |author formatting
+    } catch (error) {
+      console.log(err)
+    }
   });
 
 program
@@ -41,12 +44,10 @@ program
     try {
     // TODO: Add the quote and author to the quotes.txt file
       // get quote and author from user input: <quote> [author]
+      // ** If no author is provided save the author as "Anonymous"
+      const authorName = author || "Anonymous";
       // match quote formatting 
-      let newQuote = (quote + " |" + author + "\n")
-
-      // ** If no author is provided ---> if author = "" ?
-      // ** save the author as "Anonymous".
-
+      const newQuote = (quote + " |" + authorName + "\n")
       // add to qoutes.txt with appendFile
       await fs.appendFile(QUOTE_FILE, newQuote)
 	    const fileContents = await fs.readFile(QUOTE_FILE, 'utf-8')
