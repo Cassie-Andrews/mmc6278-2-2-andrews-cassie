@@ -4,7 +4,7 @@ const fs = require("fs/promises");
 const chalk = require("chalk");
 const QUOTE_FILE = "quotes.txt";
 
-console.log("Hello!")
+// console.log("Hello world!")
 
 program
   .name("quotes")
@@ -19,10 +19,16 @@ program
     // TODO: Pull a random quote from the quotes.txt file
       //read file with fs module
       const data = await fs.readFile(QUOTE_FILE, 'utf-8');
-      console.log(data)
-      
+      // console.log(data);
       // split into lines 
-      // select random quote
+      const lines = data.split("\n");
+      // filter blank lines
+      const filteredLines = lines.filter(line => line.trim() !== "");
+      // get random index
+      const randomIndex = Math.floor(Math.random() * filteredLines.length);
+      // select quote using randomIndex from filteredLines
+      const randomQuote = filteredLines[randomIndex];
+      console.log(randomQuote);
     // console log the quote and author
     // You may style the text with chalk as you wish
   });
