@@ -1,7 +1,10 @@
 const { program } = require("commander");
+// import fs module which allows us to interact with files on the hard disk
 const fs = require("fs/promises");
 const chalk = require("chalk");
 const QUOTE_FILE = "quotes.txt";
+
+console.log("Hello!")
 
 program
   .name("quotes")
@@ -12,7 +15,14 @@ program
   .command("getQuote")
   .description("Retrieves a random quote")
   .action(async () => {
+    //// TODO - add try statement from lecture 2.05
     // TODO: Pull a random quote from the quotes.txt file
+      //read file with fs module
+      const data = await fs.readFile(QUOTE_FILE, 'utf-8');
+      console.log(data)
+      
+      // split into lines 
+      // select random quote
     // console log the quote and author
     // You may style the text with chalk as you wish
   });
@@ -20,7 +30,7 @@ program
 program
   .command("addQuote <quote> [author]")
   .description("adds a quote to the quote file")
-  .action(async (quote, author) => {
+  .action(async () => {
     // TODO: Add the quote and author to the quotes.txt file
     // If no author is provided,
     // save the author as "Anonymous".
