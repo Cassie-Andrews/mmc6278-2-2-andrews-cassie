@@ -39,6 +39,17 @@ program
   .description("adds a quote to the quote file")
   .action(async () => {
     // TODO: Add the quote and author to the quotes.txt file
+      // get quote and author from user input: <quote> [author]
+      const newQuote = ('<quote>' + " |" + '[author]' + "\n")
+
+      console.log(newQuote)
+
+      fs.appendFile(QUOTE_FILE, newQuote)
+	      .then(function() {
+          
+          return fs.readFile(QUOTE_FILE, 'utf-8')
+	    })
+      // appendFile
     // If no author is provided,
     // save the author as "Anonymous".
     // After the quote/author is saved,
